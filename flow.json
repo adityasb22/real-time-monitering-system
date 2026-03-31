@@ -1,0 +1,179 @@
+[
+    {
+        "id": "13c23e08cae79f5f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5b874e8f9ea0ca3f",
+        "type": "inject",
+        "z": "13c23e08cae79f5f",
+        "name": "Trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "5a64187d68c48bac"
+            ]
+        ]
+    },
+    {
+        "id": "5a64187d68c48bac",
+        "type": "http request",
+        "z": "13c23e08cae79f5f",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://real-time-soil-moisture-default-rtdb.asia-southeast1.firebasedatabase.app/soil/moisture.json",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "4306a6612ce2b6d7"
+            ]
+        ]
+    },
+    {
+        "id": "4306a6612ce2b6d7",
+        "type": "json",
+        "z": "13c23e08cae79f5f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 180,
+        "wires": [
+            [
+                "78f8bf5c660c061b",
+                "5114649bc20740b1"
+            ]
+        ]
+    },
+    {
+        "id": "78f8bf5c660c061b",
+        "type": "ui_gauge",
+        "z": "13c23e08cae79f5f",
+        "name": "",
+        "group": "3f7451b668e753bd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "moisture",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "30",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 800,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "5114649bc20740b1",
+        "type": "ui_chart",
+        "z": "13c23e08cae79f5f",
+        "name": "",
+        "group": "3f7451b668e753bd",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Moisture trend",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": true,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 820,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f7451b668e753bd",
+        "type": "ui_group",
+        "name": "Soil Monitering",
+        "tab": "a45d324d3ca30094",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a45d324d3ca30094",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ecc5cfaa1d6e5b57",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
